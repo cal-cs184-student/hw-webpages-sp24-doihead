@@ -44,7 +44,7 @@
 <p>We have to make a few observations before we can begin to rasterize triangles. First, we must recognize that if we tried to test if every single point on the screen was within the bounds of every triangle, our GPU would explode violently. Since that would be bad, we first establish a bounding box around the triangle using its corner points. Then, within this box, it suffices for us to first check if each point (corresponding to the midpoint of each pixel) is inside the triangle. Note that this means we can't be doing any worse than an algorithm that checks each sample within the bounding box, since this is precisely what we do. For this, we have created an inside() method which takes in the vertices of the triangle, the point in question, and the triangle's winding order. The winding order is needed because we determine the inside-ness of a point to a triangle based on the formula from lecture--that is, functionally a three-line test. This method, because it is based on the normal vectors of the sides of the triangle, necessitates that the vectors point towards the inside of the triangle--that is to say, if the winding order is reversed, the same equations give an opposite-sign result. So, we simply account for this by reversing the desired sign of an inside point in our booleans. From there, if this point is inside the triangle, we place the given color at the right index in the sample buffer (used for now because it's needed when we supersample later). We also have a check to ensure we don't accidentally index outside of the sample buffer.</p>
 
 <center><img src="images/q1.png" align="middle" width="700px"/></center>
-<figcaption align="middle">Our rasterizer in action on an interesting part of the scene. Aliasing is notably present.</figcaption>
+<center><figcaption align="middle">Our rasterizer in action on an interesting part of the scene. Aliasing is notably present.</figcaption></center>
 
 
 <h3 align="middle">Part 2: Antialiasing triangles</h3>
@@ -104,7 +104,7 @@
 <h3 align="middle">Part 3: Transforms</h3>
 
 <center><img src="images/q3.png" align="middle" width="700px"/></center>
-<figcaption align="middle">Fleeing cubeman.</figcaption>
+<center><figcaption align="middle">Fleeing cubeman.</figcaption></center>
 
 <p>Here we see cubeman running away from jaggy-godzilla (unrenderable). I tried to put the legs in the middle of a running motion while aiming to move the arms and head into a position resembling "fleeing".</p>
 
